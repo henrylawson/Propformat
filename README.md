@@ -20,6 +20,7 @@ private class Person
 ```
 
 A silly example using a phrase:
+
 ```c#
 var formatter = new PropertyFormatter<Person>(
 	"Hello {0}, You are {1} this year!",
@@ -33,6 +34,7 @@ Console.WriteLine(formatter.Format(defaultPerson));
 ```
 
 A silly example using html:
+
 ```c#
 var htmlFormatter = new PropertyFormatter<Person>(
 	"<div class=\"name\">{0}</div><div class=\"age\">{1}</div>",
@@ -45,5 +47,5 @@ Console.WriteLine(formatter.Format(defaultPerson));
 // Outputs: <div class=\"name\">Henry</div><div class=\"age\">23</div>
 ```
 
-# Credits
+# <credits></credits>
 Propformat was developed by Henry Lawson and is released with no license!
