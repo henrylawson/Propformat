@@ -1,0 +1,11 @@
+*.suo
+*.Dotsettings.user
+*.dotCover
+*.StyleCop
+_Resharper.*
+packages/*
+!packages/repositories.config
+Propformat/bin
+Propformat/obj
+Propformat.Test/bin
+Propformat.Test/obj
