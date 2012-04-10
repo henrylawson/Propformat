@@ -47,5 +47,5 @@ Console.WriteLine(formatter.Format(defaultPerson));
 // Outputs: <div class="name">Henry</div><div class="age">23</div>
 ```
 
-# <credits></credits>
+# Credits
 Propformat was developed by Henry Lawson and is released with no license!
