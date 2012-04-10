@@ -6,7 +6,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class PorpertyFormatterTest
+    public class PropertyFormatterTest
     {
         private Person defaultPerson;
 
@@ -25,7 +25,9 @@
         [Test]
         public void ShouldFormatOnePropertyIntoAString()
         {
-            var formattedString = "Hello {0}!".FormatUsingProperties<Person>(defaultPerson, x => x.Name);
+            var formatter = new PropertyFormatter<Person>("Hello {0}!", x => x.Name);
+
+            var formattedString = formatter.Format(defaultPerson);
 
             Assert.That(formattedString, Is.EqualTo("Hello Henry!"));
         }
@@ -33,10 +35,11 @@
         [Test]
         public void ShouldFormatMultiplePropertiesIntoAString()
         {
-            var formattedString = "Hello {0}, You are {1} this year!".FormatUsingProperties(
-                defaultPerson, 
-                x => x.Name, 
+            var formatter = new PropertyFormatter<Person>("Hello {0}, You are {1} this year!",
+                x => x.Name,
                 x => x.Age.ToString(CultureInfo.InvariantCulture));
+
+            var formattedString = formatter.Format(defaultPerson);
 
             Assert.That(formattedString, Is.EqualTo("Hello Henry, You are 23 this year!"));
         }
@@ -45,18 +48,19 @@
         [ExpectedException(typeof(FormatException))]
         public void ShouldThrowAnErrorWhenThereIsACountMismatch()
         {
-            "{0} {1} {2}".FormatUsingProperties(defaultPerson, x => x.Name);
+            var formatter = new PropertyFormatter<Person>("{0} {1} {2}", x => x.Name);
+
+            formatter.Format(defaultPerson);
         }
 
         [Test]
         public void ShouldFormatMyHtmlStringWithProperties()
         {
-            const string HtmlString = "<div class=\"name\">{0}</div><div class=\"age\">{1}</div>";
-            
-            var formattedHtml = HtmlString.FormatUsingProperties(
-                defaultPerson,
+            var htmlFormatter = new PropertyFormatter<Person>("<div class=\"name\">{0}</div><div class=\"age\">{1}</div>",
                 x => x.Name, 
                 x => x.Age.ToString(CultureInfo.InvariantCulture));
+            
+            var formattedHtml = htmlFormatter.Format(defaultPerson);
 
             Assert.That(formattedHtml, Is.EqualTo("<div class=\"name\">Henry</div><div class=\"age\">23</div>"));
         }
