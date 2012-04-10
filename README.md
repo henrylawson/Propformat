@@ -44,7 +44,7 @@ var htmlFormatter = new PropertyFormatter<Person>(
 
 Console.WriteLine(formatter.Format(defaultPerson));
 
-// Outputs: <div class=\"name\">Henry</div><div class=\"age\">23</div>
+// Outputs: <div class="name">Henry</div><div class="age">23</div>
 ```
 
 # <credits></credits>
